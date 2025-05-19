@@ -1,0 +1,6 @@
+scikit-learn>=1.0.1
+nltk
+urlextract
+pandas
+flask
+matplotlib
