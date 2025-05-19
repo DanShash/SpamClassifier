@@ -1,5 +1,4 @@
 README.md:
-markdown
 
 # Email Spam Classifier with NLP
 
@@ -22,6 +21,11 @@ This project implements an NLP-based spam email classifier using logistic regres
 - Python 3.7+
 - Git
 - Internet connection (to download the dataset)
+- scikit-learn>=1.0.1
+- nltk
+- urlextract
+- pandas
+- flask (for API)
 
 ### Installation
 1. Clone the repository:
@@ -124,23 +128,7 @@ images/confusion_matrix.png: Confusion matrix visualization.
 
 datasets/spam/: Directory for SpamAssassin dataset (created during execution).
 
-Requirements
-See requirements.txt for details. Key dependencies:
-scikit-learn>=1.0.1
-
-nltk
-
-urlextract
-
-pandas
-
-flask (for API)
-
-Visualizations
-Confusion Matrix: Visualizes true positives/negatives for spam and ham on the test set.
-Confusion Matrix
-
-Future Improvements
+### Future Improvements
 Incorporate TF-IDF or BERT for enhanced NLP performance.
 
 Address dataset imbalance using SMOTE or class weighting.
@@ -151,8 +139,3 @@ Acknowledgments
 Dataset: Apache SpamAssassin Public Corpus
 
 Libraries: Scikit-learn, NLTK, urlextract
-
-Contact
-For questions, contact [Your Name] at [your-email@example.com (mailto:your-email@example.com)] or open an issue on GitHub.
-
-
