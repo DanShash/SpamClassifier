@@ -1,40 +1,158 @@
-## Spam Classifier Project
+README.md:
+markdown
 
-### Description
+# Email Spam Classifier with NLP
 
-This project aims to create a spam classifier model using machine learning techniques. The model is designed to classify emails as either spam or non-spam (ham) based on their content. The project utilizes a dataset of emails, consisting of both spam and ham examples, to train and evaluate the classifier.
+A machine learning project to classify emails as spam or ham using the SpamAssassin Public Corpus. Built with Scikit-learn, NLTK, and custom NLP preprocessing, this project achieves **98.5% accuracy** in detecting spam emails.
 
-### Setup
+## Project Overview
 
-The project requires Python 3.7 or later and the following libraries:
-- `sklearn` (version 1.0.1 or later)
-- `matplotlib`
-- `nltk`
-- `urlextract`
+This project implements an NLP-based spam email classifier using logistic regression. It processes 3,000 emails (2,500 ham, 500 spam) from the SpamAssassin Public Corpus, applying custom preprocessing to handle HTML, multipart formats, and imbalanced data. The model is trained via a Scikit-learn pipeline and achieves high performance: **98.5% accuracy**, **96.88% precision**, and **97.89% recall**.
 
-You can install the required libraries using pip:
-```bash
-pip install scikit-learn matplotlib nltk urlextract
-```
+### Features
+- **Dataset**: 3,000 emails from SpamAssassin (2,500 ham, 500 spam).
+- **Preprocessing**: NLTK Porter Stemming, URL/number replacement, word vectorization, and HTML-to-text conversion.
+- **Model**: Logistic regression with a custom Scikit-learn pipeline.
+- **Performance**: 98.5% cross-validation accuracy, 96.88% precision, 97.89% recall on the test set.
+- **Deployment**: Optional Flask API for real-time spam classification (see `app.py`).
 
-### Data Collection and Preprocessing
+## Setup Instructions
 
-The project first downloads a dataset of spam and ham emails from a public corpus. It then preprocesses the emails, converting them to plain text, and extracts features from the text for machine learning model training.
+### Prerequisites
+- Python 3.7+
+- Git
+- Internet connection (to download the dataset)
 
-### Feature Extraction
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/[your-username]/[your-repo-name].git
+   cd [your-repo-name]
 
-The feature extraction process involves converting the text into word counts, then transforming these counts into numerical vectors. This step is crucial for training the machine learning model.
+Install dependencies:
+bash
 
-### Model Training and Evaluation
+pip install -r requirements.txt
 
-The project uses a logistic regression model for classifying emails as spam or ham. The model is trained using the extracted features from the training dataset and evaluated using cross-validation to ensure robust performance.
+Download and extract the SpamAssassin dataset:
+Run the notebook (spam_classifier.ipynb) to automatically fetch 20030228_easy_ham.tar.bz2 and 20030228_spam.tar.bz2 to datasets/spam/.
 
-### Results
+Alternatively, manually download from SpamAssassin Public Corpus.
 
-The trained model achieves an accuracy of over 98.5% on the training set. Precision and recall scores are also calculated on the test set to evaluate the model's performance further.
+Running the Notebook
+Launch Jupyter Notebook:
+bash
 
-### Conclusion
+jupyter notebook
 
-The spam classifier project demonstrates the use of machine learning techniques to classify emails based on their content. The model shows promising results and can be further optimized and extended for real-world spam detection applications.
+Open spam_classifier.ipynb and run all cells to:
+Fetch and preprocess the dataset.
 
----
+Train the logistic regression model.
+
+Evaluate performance (accuracy, precision, recall).
+
+The trained model is saved as spam_classifier.pkl.
+
+Running the Flask API (Optional)
+Ensure the trained model (spam_classifier.pkl) is in the repo root.
+
+Run the Flask app:
+bash
+
+python app.py
+
+Access the API at http://localhost:5000/predict via a POST request (see Flask API Usage below).
+
+Dataset
+Source: SpamAssassin Public Corpus
+
+Files:
+20030228_easy_ham.tar.bz2: 2,500 non-spam emails.
+
+20030228_spam.tar.bz2: 500 spam emails.
+
+Size: 3,000 emails (16.7% spam ratio, imbalanced).
+
+Structure: Emails include plain text, HTML, and multipart formats, requiring robust preprocessing.
+
+Performance
+Cross-Validation Accuracy: 98.5% (3-fold CV on training set).
+
+Test Set Metrics:
+Precision: 96.88%
+
+Recall: 97.89%
+
+Visualizations: See images/confusion_matrix.png for the test set confusion matrix.
+
+Flask API Usage
+The Flask API (app.py) allows real-time spam classification via HTTP requests.
+Endpoint
+URL: POST /predict
+
+Payload: JSON with an email field containing the email text (plain text or HTML).
+json
+
+{
+  "email": "Subject: Win a free prize!\nClick here: http://scam.com to claim your reward!"
+}
+
+Response: JSON with prediction and probability.
+json
+
+{
+  "prediction": "spam",
+  "probability": 0.95
+}
+
+Example Request (using curl)
+bash
+
+curl -X POST http://localhost:5000/predict -H "Content-Type: application/json" -d '{"email": "Subject: Win a free prize!\nClick here: http://scam.com to claim your reward!"}'
+
+Files
+spam_classifier.ipynb: Jupyter Notebook with the full project code.
+
+app.py: Flask API script for deployment (optional).
+
+spam_classifier.pkl: Trained logistic regression model.
+
+requirements.txt: Python dependencies.
+
+images/confusion_matrix.png: Confusion matrix visualization.
+
+datasets/spam/: Directory for SpamAssassin dataset (created during execution).
+
+Requirements
+See requirements.txt for details. Key dependencies:
+scikit-learn>=1.0.1
+
+nltk
+
+urlextract
+
+pandas
+
+flask (for API)
+
+Visualizations
+Confusion Matrix: Visualizes true positives/negatives for spam and ham on the test set.
+Confusion Matrix
+
+Future Improvements
+Incorporate TF-IDF or BERT for enhanced NLP performance.
+
+Address dataset imbalance using SMOTE or class weighting.
+
+Deploy the Flask API on a cloud platform (e.g., Heroku, AWS).
+
+Acknowledgments
+Dataset: Apache SpamAssassin Public Corpus
+
+Libraries: Scikit-learn, NLTK, urlextract
+
+Contact
+For questions, contact [Your Name] at [your-email@example.com (mailto:your-email@example.com)] or open an issue on GitHub.
+
+
