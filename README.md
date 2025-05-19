@@ -124,8 +124,6 @@ spam_classifier.pkl: Trained logistic regression model.
 
 requirements.txt: Python dependencies.
 
-images/confusion_matrix.png: Confusion matrix visualization.
-
 datasets/spam/: Directory for SpamAssassin dataset (created during execution).
 
 ### Future Improvements
