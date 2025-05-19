@@ -133,7 +133,5 @@ Address dataset imbalance using SMOTE or class weighting.
 
 Deploy the Flask API on a cloud platform (e.g., Heroku, AWS).
 
-Acknowledgments
+### Acknowledgments
 Dataset: Apache SpamAssassin Public Corpus
-
-Libraries: Scikit-learn, NLTK, urlextract
