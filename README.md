@@ -77,8 +77,6 @@ Start the API:
 python app.py
 ```
 
-Access it at: [http://localhost:5000/predict](http://localhost:5000/predict)
-
 ---
 
 ## 📚 Dataset Details
